@@ -392,6 +392,19 @@ export const providers: Record<BuiltInProviderId, ProviderConfig> = {
     supportsFunctions: true,
     supportsStreaming: true,
   },
+  github: {
+    id: 'github',
+    name: 'GitHub',
+    description: 'Export and push projects to GitHub repositories',
+    apiKeyRequired: true,
+    apiKeyPlaceholder: 'ghp_...',
+    apiKeyHelpUrl: 'https://github.com/settings/tokens',
+    baseUrl: 'https://api.github.com',
+    supportsModelDiscovery: false,
+    supportsFunctions: false,
+    supportsStreaming: false,
+    usesOAuth: false, // authenticated via PAT
+  },
 };
 
 export function getProvider(id: ProviderId): ProviderConfig {

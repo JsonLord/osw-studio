@@ -73,6 +73,36 @@ export async function POST(request: NextRequest) {
         isValid = hfResp.ok;
         break;
 
+      case 'github':
+        const githubResp = await fetch('https://api.github.com/user', {
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Accept': 'application/vnd.github+json',
+            'X-GitHub-Api-Version': '2022-11-28'
+          }
+        });
+        if (githubResp.ok) {
+          const userData = await githubResp.json();
+          return NextResponse.json({ valid: true, username: userData.login });
+        }
+        isValid = false;
+        break;
+
+      case 'github':
+        const githubResp = await fetch('https://api.github.com/user', {
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Accept': 'application/vnd.github+json',
+            'X-GitHub-Api-Version': '2022-11-28'
+          }
+        });
+        if (githubResp.ok) {
+          const userData = await githubResp.json();
+          return NextResponse.json({ valid: true, username: userData.login });
+        }
+        isValid = false;
+        break;
+
       default:
         // For other OpenAI-compatible providers (including custom ones)
         if (providerConfig.baseUrl) {

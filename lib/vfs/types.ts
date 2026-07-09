@@ -11,6 +11,12 @@ export interface Project {
     defaultTemplate?: string;
     globalStyles?: string;
     previewEntryPoint?: string;  // defaults to '/index.html' when absent
+    githubRepo?: {
+      owner: string;
+      name: string;
+      html_url: string;
+      full_name: string;
+    };
   };
   lastSavedCheckpointId?: string | null;
   lastSavedAt?: Date | null;
