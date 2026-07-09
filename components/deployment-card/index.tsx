@@ -29,10 +29,13 @@ import {
   Pencil,
   Loader2,
   FileBox,
+  Rocket,
 } from 'lucide-react';
 import { formatDistanceToNow } from 'date-fns';
 import { ThumbnailArea } from '@/components/ui/thumbnail-area';
 import { captureDeploymentScreenshot } from '@/lib/utils/deployment-thumbnail';
+import { HFDeployDialog } from './hf-deploy-dialog';
+import { configManager } from '@/lib/config/storage';
 
 interface DeploymentCardProps {
   deployment: Deployment;
@@ -48,6 +51,7 @@ interface DeploymentCardProps {
   onDelete: (deploymentId: string) => void;
   onExportAsTemplate?: (deployment: Deployment) => void;
   onThumbnailChange?: (deploymentId: string, image: string | undefined) => void;
+  workspaceId?: string;
 }
 
 export function DeploymentCard({
@@ -55,6 +59,7 @@ export function DeploymentCard({
   project,
   isPublishing = false,
   onOpenSettings,
+  workspaceId,
   onOpenServerSettings,
   onViewAnalytics,
   onEditProject,
@@ -83,6 +88,9 @@ export function DeploymentCard({
   const handleViewLive = () => {
     window.open(publicUrl, '_blank', 'noopener,noreferrer');
   };
+
+  const [showHFDeploy, setShowHFDeploy] = React.useState(false);
+  const hasHFToken = configManager.getHFSpacesToken();
 
   return (
     <div className="border rounded-lg overflow-hidden hover:shadow-lg transition-shadow bg-card">
@@ -300,6 +308,15 @@ export function DeploymentCard({
                 </DropdownMenuItem>
               )}
               <DropdownMenuSeparator />
+              <DropdownMenuItem
+                onClick={() => setShowHFDeploy(true)}
+                disabled={!hasHFToken}
+                title={!hasHFToken ? 'Add Hugging Face token in Settings > Connections to enable' : undefined}
+              >
+                <Rocket className="h-4 w-4 mr-2" />
+                Deploy to HF Space
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
               {deployment.enabled ? (
                 <DropdownMenuItem onClick={() => onDisable(deployment.id)}>
                   <EyeOff className="h-4 w-4 mr-2" />
@@ -322,6 +339,14 @@ export function DeploymentCard({
           </DropdownMenu>
         </div>
       </div>
+
+      <HFDeployDialog
+        isOpen={showHFDeploy}
+        onClose={() => setShowHFDeploy(false)}
+        deploymentId={deployment.id}
+        deploymentName={deployment.name}
+        workspaceId={workspaceId}
+      />
     </div>
   );
 }

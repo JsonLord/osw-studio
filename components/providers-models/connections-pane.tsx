@@ -19,6 +19,7 @@ import { ConnectionBadge } from '@/components/settings/connection-badge';
 import { loadProviderModels } from '@/lib/llm/models/model-catalog';
 import { CodexAuthPanel } from '@/components/settings/codex-auth-panel';
 import { HFAuthPanel } from '@/components/settings/hf-auth-panel';
+import { HFSpacesAuthPanel } from '@/components/settings/hf-spaces-auth-panel';
 import { Drawer } from './drawer';
 import { SearchConnectionsSection } from './search-connections';
 import type { ProviderId } from '@/lib/llm/providers/types';
@@ -562,6 +563,113 @@ function ConnectChooseBody({ onChoose, onChooseCustom }: ConnectChooseBodyProps)
           })
         )}
       </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Deployment Connections Section
+// ---------------------------------------------------------------------------
+
+function DeploymentConnectionsSection() {
+  const [, setConnVersion] = useState(0);
+  const refresh = useCallback(() => setConnVersion((v) => v + 1), []);
+
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [drawerMode, setDrawerMode] = useState<'edit-config' | null>(null);
+
+  const isConnected = !!configManager.getHFSpacesToken();
+  const token = configManager.getHFSpacesToken();
+
+  const handleDisconnect = () => {
+    configManager.setHFSpacesToken('');
+    refresh();
+    toast.success('Disconnected Hugging Face Space deployment');
+  };
+
+  return (
+    <div className="flex flex-col gap-6">
+      <div>
+        <h3 className="text-sm font-semibold text-foreground">Deployments</h3>
+        <p className="text-xs text-muted-foreground mt-1">
+          External hosting providers. Connect your accounts to deploy your generated projects directly to actual servers.
+        </p>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+        {isConnected ? (
+          <div className="flex items-center gap-3 bg-card border border-border rounded-md px-4 py-3">
+            <div className="w-[36px] h-[36px] rounded-md bg-secondary border border-border flex items-center justify-center flex-shrink-0 text-xs font-semibold text-muted-foreground">
+              HF
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="font-semibold text-sm">Hugging Face Space</div>
+              <div className="text-xs text-muted-foreground font-mono mt-0.5 truncate">
+                {token ? `···${token.slice(-4)}` : ''}
+              </div>
+            </div>
+            <div className="flex items-center gap-1.5 flex-shrink-0">
+              <div className="h-1.5 w-1.5 rounded-full bg-green-500 shadow-[0_0_6px_rgba(34,197,94,0.5)]" />
+              <span className="text-xs font-semibold text-green-500 mr-1">Connected</span>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button size="icon" variant="ghost" className="size-7" title="Connection options">
+                    <MoreVertical className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem onSelect={() => { setDrawerMode('edit-config'); setDrawerOpen(true); }}>
+                    <Pencil className="h-4 w-4" />
+                    Edit
+                  </DropdownMenuItem>
+                  <DropdownMenuItem onSelect={handleDisconnect} className="text-destructive focus:text-destructive">
+                    <Unplug className="h-4 w-4" />
+                    Disconnect
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          </div>
+        ) : (
+          <button
+            type="button"
+            onClick={() => { setDrawerMode('edit-config'); setDrawerOpen(true); }}
+            className={cn(
+              'w-full flex items-start gap-3 px-3 py-3 rounded-lg text-left transition-colors border border-dashed',
+              'hover:bg-muted border-border hover:border-border',
+              'cursor-pointer'
+            )}
+          >
+            <div className="w-[34px] h-[34px] rounded-sm bg-secondary border border-border flex items-center justify-center flex-shrink-0 text-xs font-semibold text-muted-foreground">
+              HF
+            </div>
+            <div className="flex-1 min-w-0">
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="font-semibold text-sm text-muted-foreground italic">Connect Hugging Face Space</span>
+              </div>
+            </div>
+            <ChevronRight className="h-4 w-4 text-muted-foreground flex-shrink-0 mt-0.5" />
+          </button>
+        )}
+      </div>
+
+      <Drawer
+        open={drawerOpen}
+        mode={drawerMode}
+        label={isConnected ? "Edit connection" : "Add a provider"}
+        title="Hugging Face Space"
+        scope="Deploy projects to Hugging Face Spaces."
+        onClose={() => { setDrawerOpen(false); setDrawerMode(null); }}
+      >
+        <div className="px-[18px] py-4 space-y-4">
+          <HFSpacesAuthPanel onAuthChange={() => { refresh(); setDrawerOpen(false); setDrawerMode(null); }} />
+          <div className="flex justify-end pt-2">
+            <Button variant="ghost" size="sm" onClick={() => { setDrawerOpen(false); setDrawerMode(null); }}>
+              Cancel
+            </Button>
+          </div>
+        </div>
+      </Drawer>
     </div>
   );
 }
@@ -1117,7 +1225,13 @@ export function ConnectionsPane() {
 
       </div>
 
-      {/* Separator between AI and Search */}
+      {/* Separator between AI and Deployments */}
+      <div className="border-t border-border" />
+
+      {/* Deployments section */}
+      <DeploymentConnectionsSection />
+
+      {/* Separator between Deployments and Search */}
       <div className="border-t border-border" />
 
       {/* Search section */}

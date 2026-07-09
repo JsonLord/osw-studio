@@ -703,6 +703,7 @@ export function DeploymentsView({ onProjectSelect, workspaceId }: DeploymentsVie
                         onDelete={handleDelete}
                         onExportAsTemplate={handleExportAsTemplate}
                         onThumbnailChange={handleDeploymentThumbnailChange}
+                        workspaceId={workspaceId}
                       />
                     );
                   })}
