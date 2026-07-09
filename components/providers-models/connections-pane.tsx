@@ -21,6 +21,8 @@ import { CodexAuthPanel } from '@/components/settings/codex-auth-panel';
 import { HFAuthPanel } from '@/components/settings/hf-auth-panel';
 import { Drawer } from './drawer';
 import { SearchConnectionsSection } from './search-connections';
+import { GitHubConnectionsSection } from './github-connections';
+import { GitHubConnectionsSection } from './github-connections';
 import type { ProviderId } from '@/lib/llm/providers/types';
 import { disconnectCodex } from '@/lib/auth/codex-auth';
 import { cn, logger } from '@/lib/utils';
@@ -1117,7 +1119,19 @@ export function ConnectionsPane() {
 
       </div>
 
-      {/* Separator between AI and Search */}
+      {/* Separator between AI and GitHub */}
+      <div className="border-t border-border" />
+
+      {/* GitHub section */}
+      <GitHubConnectionsSection />
+
+      {/* Separator between AI and GitHub */}
+      <div className="border-t border-border" />
+
+      {/* GitHub section */}
+      <GitHubConnectionsSection />
+
+      {/* Separator between GitHub and Search */}
       <div className="border-t border-border" />
 
       {/* Search section */}

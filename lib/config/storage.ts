@@ -1,5 +1,5 @@
 
-import { ProviderId, ProviderConfig, ProviderModel, CodexAuthData, HFAuthData } from '@/lib/llm/providers/types';
+import { ProviderId, ProviderConfig, ProviderModel, CodexAuthData, HFAuthData, GitHubAuthData } from '@/lib/llm/providers/types';
 import { getDefaultModel } from '@/lib/llm/providers/registry';
 import {
   getCustomProviders,
@@ -76,6 +76,7 @@ export interface AppSettings {
   compactionLimits?: Partial<Record<ProviderId, number>>;
   codexAuth?: CodexAuthData;
   hfAuth?: HFAuthData;
+  githubAuth?: GitHubAuthData;
   telemetryOptIn?: boolean;
   /** When true, emit llm_request and stream_raw_chunk debug events (ephemeral, not persisted). */
   debugStreamEnabled?: boolean;
@@ -489,6 +490,38 @@ class ConfigManager {
     // Also clear the provider key
     const providerKeys = settings.providerKeys || {};
     delete providerKeys['huggingface'];
+    this.setSetting('providerKeys', providerKeys);
+  }
+
+  // GitHub auth management
+  getGitHubAuth(): GitHubAuthData | null {
+    const stored = this.getSettings().githubAuth;
+    if (stored) return stored;
+
+    // Support reading from environment variable for self-hosted deployments
+    const envToken = process.env.GITHUB_TOKEN || process.env.NEXT_PUBLIC_GITHUB_TOKEN;
+    if (envToken) {
+      return { access_token: envToken };
+    }
+
+    return null;
+  }
+
+  setGitHubAuth(auth: GitHubAuthData): void {
+    this.setSetting('githubAuth', auth);
+    // Also write access_token into providerKeys so getProviderApiKey() works
+    this.setProviderApiKey('github', auth.access_token);
+  }
+
+  clearGitHubAuth(): void {
+    const settings = this.getSettings();
+    delete settings.githubAuth;
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(this.STORAGE_KEY, JSON.stringify(settings));
+    }
+    // Also clear the provider key
+    const providerKeys = settings.providerKeys || {};
+    delete providerKeys['github'];
     this.setSetting('providerKeys', providerKeys);
   }
 

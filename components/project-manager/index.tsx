@@ -79,6 +79,7 @@ import { configManager, migrateBackendKey } from '@/lib/config/storage';
 import { TemplateExportDialog } from '@/components/templates/template-export-dialog';
 import { ProjectSettingsModal } from '@/components/project-backend';
 import { DescribeMode } from '@/components/describe-mode';
+import { GitHubExportModal } from './github-export-modal';
 import { track } from '@/lib/telemetry';
 import { usePagination } from '@/lib/hooks/use-pagination';
 import { Pagination, PaginationRange } from '@/components/ui/pagination';
@@ -146,6 +147,7 @@ export function ProjectManager({ onProjectSelect, hideHeader = false, hideFooter
   const [aboutModalOpen, setAboutModalOpen] = useState(false);
   const [templateExportProject, setTemplateExportProject] = useState<Project | null>(null);
   const [backendProject, setBackendProject] = useState<Project | null>(null);
+  const [githubExportProject, setGithubExportProject] = useState<Project | null>(null);
   const { state: tourState, setProjectList, start: startTour, setTourDemoProjectId } = useGuidedTour();
   const tourStep = tourState.currentStep?.id;
   const tourRunning = tourState.status === 'running';
@@ -777,6 +779,7 @@ export function ProjectManager({ onProjectSelect, hideHeader = false, hideFooter
                             onPreview={setPreviewProject}
                             onExportAsTemplate={setTemplateExportProject}
                             onBackend={setBackendProject}
+                            onGitHubExport={setGithubExportProject}
                             onUpdate={handleProjectUpdate}
                             viewMode={viewMode}
                             forceMenuOpen={tourActionProjectId === project.id}
@@ -1095,6 +1098,16 @@ export function ProjectManager({ onProjectSelect, hideHeader = false, hideFooter
             localStorage.setItem(`osw-backend-${backendProject.id}`, String(enabled));
             setBackendProject({ ...backendProject }); // Force re-derive enabled state
           }}
+        />
+      )}
+
+      {/* GitHub Export Modal */}
+      {githubExportProject && (
+        <GitHubExportModal
+          project={githubExportProject}
+          open={!!githubExportProject}
+          onOpenChange={(open) => !open && setGithubExportProject(null)}
+          onSuccess={handleProjectUpdate}
         />
       )}
 

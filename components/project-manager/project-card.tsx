@@ -51,6 +51,7 @@ interface ProjectCardProps {
   onUpdate: (project: Project) => void;
   onExportAsTemplate?: (project: Project) => void;
   onBackend?: (project: Project) => void;
+  onGitHubExport?: (project: Project) => void;
   viewMode?: 'grid' | 'list';
   forceMenuOpen?: boolean;
   highlightExport?: boolean;
@@ -74,6 +75,7 @@ export const ProjectCard = React.memo(function ProjectCard({
   onUpdate,
   onExportAsTemplate,
   onBackend,
+  onGitHubExport,
   viewMode = 'grid',
   forceMenuOpen = false,
   highlightExport = false,
@@ -372,6 +374,15 @@ export const ProjectCard = React.memo(function ProjectCard({
                   <Download className="mr-2 h-4 w-4" />
                   Export as JSON
                 </DropdownMenuItem>
+                {onGitHubExport && (
+                  <DropdownMenuItem onClick={(e) => {
+                    e.stopPropagation();
+                    onGitHubExport(project);
+                  }}>
+                    <Github className="mr-2 h-4 w-4" />
+                    {project.settings.githubRepo ? 'Update on GitHub' : 'Export to GitHub'}
+                  </DropdownMenuItem>
+                )}
                 {onExportAsTemplate && (
                   <DropdownMenuItem onClick={(e) => {
                     e.stopPropagation();
@@ -519,6 +530,15 @@ export const ProjectCard = React.memo(function ProjectCard({
                 <Download className="mr-2 h-4 w-4" />
                 Export as JSON
               </DropdownMenuItem>
+              {onGitHubExport && (
+                <DropdownMenuItem onClick={(e) => {
+                  e.stopPropagation();
+                  onGitHubExport(project);
+                }}>
+                  <Github className="mr-2 h-4 w-4" />
+                  {project.settings.githubRepo ? 'Update on GitHub' : 'Export to GitHub'}
+                </DropdownMenuItem>
+              )}
               {onExportAsTemplate && (
                 <DropdownMenuItem onClick={(e) => {
                   e.stopPropagation();

@@ -17,7 +17,8 @@ export type BuiltInProviderId =
   | 'minimax'
   | 'llamacpp'
   | 'meshllm'
-  | 'opencode-go';
+  | 'opencode-go'
+  | 'github';
 
 /** Provider ID type. Includes built-in providers and arbitrary custom IDs. */
 export type ProviderId = BuiltInProviderId | (string & {});
@@ -74,3 +75,7 @@ export interface HFAuthData {
   expires_at?: number;  // OAuth tokens expire, API keys don't
 }
 
+export interface GitHubAuthData {
+  access_token: string;
+  username?: string;
+}
