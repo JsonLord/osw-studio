@@ -15,6 +15,7 @@ export interface HFCapabilities {
   clientId: string | null;
   scopes: string;
   codexAvailable: boolean;
+  hfSpacesTokenAvailable: boolean;
 }
 
 /**

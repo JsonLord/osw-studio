@@ -1,0 +1,30 @@
+
+> osw-studio-v1@1.84.0 dev
+> next dev
+
+   ▲ Next.js 15.5.14
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.0.2:3000
+
+ ✓ Starting...
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+ ○ Compiling /instrumentation ...
+ ✓ Compiled /instrumentation in 1349ms (76 modules)
+ ✓ Ready in 3.3s
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 1362ms (215 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 30.4s (2970 modules)
+ HEAD / 200 in 213ms
+ GET / 200 in 223ms
+ ○ Compiling /api/docs/[...path] ...
+ ✓ Compiled /api/docs/[...path] in 2.8s (2959 modules)
+ GET /?project=c6029ea3-69a4-4e81-8b3c-0999f80789c9 200 in 567ms
+ GET /api/docs/WHATS_NEW.md 200 in 4537ms
+ ✓ Compiled in 1858ms (2940 modules)
+ ✓ Compiled in 464ms (1337 modules)
+[?25h

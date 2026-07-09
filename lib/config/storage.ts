@@ -76,6 +76,7 @@ export interface AppSettings {
   compactionLimits?: Partial<Record<ProviderId, number>>;
   codexAuth?: CodexAuthData;
   hfAuth?: HFAuthData;
+  hfSpacesToken?: string;
   telemetryOptIn?: boolean;
   /** When true, emit llm_request and stream_raw_chunk debug events (ephemeral, not persisted). */
   debugStreamEnabled?: boolean;
@@ -490,6 +491,14 @@ class ConfigManager {
     const providerKeys = settings.providerKeys || {};
     delete providerKeys['huggingface'];
     this.setSetting('providerKeys', providerKeys);
+  }
+
+  getHFSpacesToken(): string | null {
+    return this.getSettings().hfSpacesToken || null;
+  }
+
+  setHFSpacesToken(token: string): void {
+    this.setSetting('hfSpacesToken', token);
   }
 
   getModelContextLengthFromCache(provider: ProviderId, modelId: string): number | undefined {

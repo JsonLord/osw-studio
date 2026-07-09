@@ -9,5 +9,6 @@ export async function GET() {
     scopes: process.env.OAUTH_SCOPES || 'openid profile inference-api',
     // Codex uses HttpOnly cookies for refresh tokens — blocked on HF Spaces (iframe/proxy)
     codexAvailable: !isHFSpaces,
+    hfSpacesTokenAvailable: !!process.env.HF_TOKEN,
   });
 }
