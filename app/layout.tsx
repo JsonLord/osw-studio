@@ -1,22 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, PT_Sans } from "next/font/google";
-
 import TanstackProvider from "@/components/providers/tanstack-query-provider";
 import { ThemeProvider } from "@/components/providers/theme-provider";
 import "@/assets/globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { BackendStatusBanner } from "@/components/backend-status-banner";
-
-const inter = Inter({
-  variable: "--font-inter-sans",
-  subsets: ["latin"],
-});
-
-const ptSans = PT_Sans({
-  variable: "--font-ptSans-mono",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-});
 
 export const metadata: Metadata = {
   title: "OSW Studio",
@@ -70,7 +57,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.variable} ${ptSans.variable} antialiased bg-background h-[100dvh] overflow-hidden`}
+        className="antialiased bg-background h-[100dvh] overflow-hidden"
         suppressHydrationWarning
       >
         <ThemeProvider>

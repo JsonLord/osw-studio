@@ -15,6 +15,7 @@ export default function Home() {
   const router = useRouter();
   const [bootError, setBootError] = useState<string | null>(null);
   const [bootDetail, setBootDetail] = useState<string | null>(null);
+  const [bootTarget, setBootTarget] = useState<string | null>(null);
   const isServerMode = process.env.NEXT_PUBLIC_SERVER_MODE === 'true';
   const isDesktop = process.env.NEXT_PUBLIC_DESKTOP === 'true';
 
@@ -41,7 +42,13 @@ export default function Home() {
           setBootError(err instanceof Error ? err.message : 'Workspace initialization request failed');
         });
     } else {
-      router.push('/admin/projects');
+      const target = '/admin/projects';
+      setBootTarget(target);
+      const timeout = window.setTimeout(() => {
+        setBootError(`Redirect to ${target} did not complete. Click the link below to continue.`);
+      }, 3000);
+      window.location.replace(target);
+      return () => window.clearTimeout(timeout);
     }
   }, [isServerMode, isDesktop, router]);
 
@@ -66,7 +73,14 @@ export default function Home() {
             </p>
           </div>
         ) : (
-          <p className="text-zinc-400">Loading...</p>
+          <div className="max-w-lg px-8 text-zinc-400 space-y-3 text-center">
+            <p>Loading...</p>
+            {bootTarget && (
+              <p className="text-sm">
+                Redirecting to <a className="underline" href={bootTarget}>OSW Studio</a>.
+              </p>
+            )}
+          </div>
         )}
       </div>
     );
