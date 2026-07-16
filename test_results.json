@@ -1,0 +1,1342 @@
+[
+  {
+    "name": "Health Check",
+    "path": "/health",
+    "method": "GET",
+    "status": 200,
+    "ok": true,
+    "duration": 384,
+    "isJson": true,
+    "data": {
+      "status": "ok"
+    }
+  },
+  {
+    "name": "API Documentation",
+    "path": "/api-docs",
+    "method": "GET",
+    "status": 200,
+    "ok": true,
+    "duration": 96,
+    "isJson": true,
+    "data": {
+      "title": "OSW Studio API Documentation",
+      "version": "1.84.0",
+      "endpoints": [
+        {
+          "path": "/health",
+          "method": "GET",
+          "purpose": "Health check for Hugging Face Spaces deployment",
+          "response": {
+            "status": "ok"
+          }
+        },
+        {
+          "path": "/api/generate",
+          "method": "POST",
+          "purpose": "Run model inference and tool execution",
+          "request_example": {
+            "prompt": "Create a simple landing page",
+            "model": "gemini-2.0-flash",
+            "provider": "google",
+            "stream": false
+          }
+        },
+        {
+          "path": "/api/models",
+          "method": "POST",
+          "purpose": "List available models for a provider",
+          "request_example": {
+            "provider": "openrouter",
+            "apiKey": "sk-..."
+          }
+        }
+      ]
+    }
+  },
+  {
+    "name": "Frontend Main Page",
+    "path": "/",
+    "method": "GET",
+    "status": 200,
+    "ok": true,
+    "duration": 47,
+    "isJson": false,
+    "data": "<!DOCTYPE html><!--ahIZSe6H2IAFm__Vh_nCI--><html lang=\"en\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=1\"/><link rel=\"stylesheet\" href=\"/_next/static/css/13edea5660dd5a11.css\" data-precedence=\"next\"/><link rel=\"preload\" as=\"script\" fetchPriority=\"low\" href=\"/_next/static/chunks/webpack-acc76049ac71f1f7.js\"/><script src=\"/_next/static/chunks/4bd1b696-100b9d70ed4e49c1.js\" async=\"\"></script><script src=\"/_next/static/chunks/1255-dfb... (truncated)"
+  },
+  {
+    "name": "Models List (Invalid Key / openrouter)",
+    "path": "/api/models",
+    "method": "POST",
+    "status": 200,
+    "ok": true,
+    "duration": 162,
+    "isJson": true,
+    "data": {
+      "models": [
+        {
+          "id": "openai/gpt-5.6-luna-pro",
+          "contextLength": 1050000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.6-luna",
+          "contextLength": 1050000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.6-terra-pro",
+          "contextLength": 1050000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.6-terra",
+          "contextLength": 1050000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.6-sol-pro",
+          "contextLength": 1050000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.6-sol",
+          "contextLength": 1050000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "anthropic/claude-sonnet-5",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "~anthropic/claude-fable-latest",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "anthropic/claude-fable-5",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "qwen/qwen3.7-plus",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text",
+            "image"
+          ]
+        },
+        {
+          "id": "anthropic/claude-opus-4.8-fast",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "anthropic/claude-opus-4.8",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "qwen/qwen3.7-max",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "anthropic/claude-opus-4.7-fast",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "openai/gpt-chat-latest",
+          "contextLength": 400000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "~anthropic/claude-haiku-latest",
+          "contextLength": 200000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "~openai/gpt-mini-latest",
+          "contextLength": 400000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "~anthropic/claude-sonnet-latest",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "~openai/gpt-latest",
+          "contextLength": 1050000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3.5-plus-20260420",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text",
+            "image",
+            "video"
+          ]
+        },
+        {
+          "id": "qwen/qwen3.6-flash",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text",
+            "image",
+            "video"
+          ]
+        },
+        {
+          "id": "qwen/qwen3.6-35b-a3b",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text",
+            "image",
+            "video"
+          ]
+        },
+        {
+          "id": "qwen/qwen3.6-max-preview",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3.6-27b",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text",
+            "image",
+            "video"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.5-pro",
+          "contextLength": 1050000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.5",
+          "contextLength": 1050000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "deepseek/deepseek-v4-pro",
+          "contextLength": 1048576,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "deepseek/deepseek-v4-flash",
+          "contextLength": 1048576,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.4-image-2",
+          "contextLength": 272000,
+          "inputModalities": [
+            "image",
+            "text",
+            "file"
+          ]
+        },
+        {
+          "id": "~anthropic/claude-opus-latest",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "anthropic/claude-opus-4.7",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "qwen/qwen3.6-plus",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text",
+            "image",
+            "video"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.4-nano",
+          "contextLength": 400000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.4-mini",
+          "contextLength": 400000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3.5-9b",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text",
+            "image",
+            "video"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.4-pro",
+          "contextLength": 1050000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.4",
+          "contextLength": 1050000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.3-chat",
+          "contextLength": 128000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "qwen/qwen3.5-35b-a3b",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text",
+            "image",
+            "video"
+          ]
+        },
+        {
+          "id": "qwen/qwen3.5-27b",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text",
+            "image",
+            "video"
+          ]
+        },
+        {
+          "id": "qwen/qwen3.5-122b-a10b",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text",
+            "image",
+            "video"
+          ]
+        },
+        {
+          "id": "qwen/qwen3.5-flash-02-23",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text",
+            "image",
+            "video"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.3-codex",
+          "contextLength": 400000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "anthropic/claude-sonnet-4.6",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "qwen/qwen3.5-plus-02-15",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text",
+            "image",
+            "video"
+          ]
+        },
+        {
+          "id": "qwen/qwen3.5-397b-a17b",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text",
+            "image",
+            "video"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-max-thinking",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "anthropic/claude-opus-4.6",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-coder-next",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-audio",
+          "contextLength": 128000,
+          "inputModalities": [
+            "text",
+            "audio"
+          ]
+        },
+        {
+          "id": "openai/gpt-audio-mini",
+          "contextLength": 128000,
+          "inputModalities": [
+            "text",
+            "audio"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.2-codex",
+          "contextLength": 400000,
+          "inputModalities": [
+            "text",
+            "image"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.2-chat",
+          "contextLength": 128000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.2-pro",
+          "contextLength": 400000,
+          "inputModalities": [
+            "image",
+            "text",
+            "file"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.2",
+          "contextLength": 400000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.1-codex-max",
+          "contextLength": 400000,
+          "inputModalities": [
+            "text",
+            "image"
+          ]
+        },
+        {
+          "id": "deepseek/deepseek-v3.2",
+          "contextLength": 163840,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "anthropic/claude-opus-4.5",
+          "contextLength": 200000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.1",
+          "contextLength": 400000,
+          "inputModalities": [
+            "image",
+            "text",
+            "file"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.1-chat",
+          "contextLength": 128000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.1-codex",
+          "contextLength": 400000,
+          "inputModalities": [
+            "text",
+            "image"
+          ]
+        },
+        {
+          "id": "openai/gpt-5.1-codex-mini",
+          "contextLength": 400000,
+          "inputModalities": [
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-oss-safeguard-20b",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-vl-32b-instruct",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text",
+            "image"
+          ]
+        },
+        {
+          "id": "openai/gpt-5-image-mini",
+          "contextLength": 400000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "anthropic/claude-haiku-4.5",
+          "contextLength": 200000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-vl-8b-thinking",
+          "contextLength": 256000,
+          "inputModalities": [
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-vl-8b-instruct",
+          "contextLength": 256000,
+          "inputModalities": [
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-5-image",
+          "contextLength": 400000,
+          "inputModalities": [
+            "image",
+            "text",
+            "file"
+          ]
+        },
+        {
+          "id": "nvidia/llama-3.3-nemotron-super-49b-v1.5",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-vl-30b-a3b-thinking",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text",
+            "image"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-vl-30b-a3b-instruct",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text",
+            "image"
+          ]
+        },
+        {
+          "id": "openai/gpt-5-pro",
+          "contextLength": 400000,
+          "inputModalities": [
+            "image",
+            "text",
+            "file"
+          ]
+        },
+        {
+          "id": "anthropic/claude-sonnet-4.5",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "deepseek/deepseek-v3.2-exp",
+          "contextLength": 163840,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-vl-235b-a22b-thinking",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text",
+            "image"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-vl-235b-a22b-instruct",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text",
+            "image"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-max",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-coder-plus",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-5-codex",
+          "contextLength": 400000,
+          "inputModalities": [
+            "text",
+            "image"
+          ]
+        },
+        {
+          "id": "deepseek/deepseek-v3.1-terminus",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-coder-flash",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-next-80b-a3b-thinking",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-next-80b-a3b-instruct",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-next-80b-a3b-instruct:free",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen-plus-2025-07-28",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen-plus-2025-07-28:thinking",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-30b-a3b-thinking-2507",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "deepseek/deepseek-chat-v3.1",
+          "contextLength": 163840,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-5-chat",
+          "contextLength": 128000,
+          "inputModalities": [
+            "file",
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-5",
+          "contextLength": 400000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "openai/gpt-5-mini",
+          "contextLength": 400000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "openai/gpt-5-nano",
+          "contextLength": 400000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "openai/gpt-oss-120b",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-oss-20b",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-oss-20b:free",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "anthropic/claude-opus-4.1",
+          "contextLength": 200000,
+          "inputModalities": [
+            "image",
+            "text",
+            "file"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-coder-30b-a3b-instruct",
+          "contextLength": 160000,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-30b-a3b-instruct-2507",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-235b-a22b-thinking-2507",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-coder",
+          "contextLength": 1048576,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-coder:free",
+          "contextLength": 1048576,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-235b-a22b-2507",
+          "contextLength": 262144,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "deepseek/deepseek-r1-0528",
+          "contextLength": 163840,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "anthropic/claude-opus-4",
+          "contextLength": 200000,
+          "inputModalities": [
+            "image",
+            "text",
+            "file"
+          ]
+        },
+        {
+          "id": "anthropic/claude-sonnet-4",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "image",
+            "text",
+            "file"
+          ]
+        },
+        {
+          "id": "meta-llama/llama-guard-4-12b",
+          "contextLength": 163840,
+          "inputModalities": [
+            "image",
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-30b-a3b",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-8b",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-14b",
+          "contextLength": 131702,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-32b",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen3-235b-a22b",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-4.1",
+          "contextLength": 1047576,
+          "inputModalities": [
+            "image",
+            "text",
+            "file"
+          ]
+        },
+        {
+          "id": "openai/gpt-4.1-mini",
+          "contextLength": 1047576,
+          "inputModalities": [
+            "image",
+            "text",
+            "file"
+          ]
+        },
+        {
+          "id": "openai/gpt-4.1-nano",
+          "contextLength": 1047576,
+          "inputModalities": [
+            "image",
+            "text",
+            "file"
+          ]
+        },
+        {
+          "id": "meta-llama/llama-4-maverick",
+          "contextLength": 1048576,
+          "inputModalities": [
+            "text",
+            "image"
+          ]
+        },
+        {
+          "id": "meta-llama/llama-4-scout",
+          "contextLength": 10000000,
+          "inputModalities": [
+            "text",
+            "image"
+          ]
+        },
+        {
+          "id": "deepseek/deepseek-chat-v3-0324",
+          "contextLength": 163840,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-4o-mini-search-preview",
+          "contextLength": 128000,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-4o-search-preview",
+          "contextLength": 128000,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "aion-labs/aion-rp-llama-3.1-8b",
+          "contextLength": 32768,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen2.5-vl-72b-instruct",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text",
+            "image"
+          ]
+        },
+        {
+          "id": "qwen/qwen-plus",
+          "contextLength": 1000000,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "deepseek/deepseek-r1-distill-llama-70b",
+          "contextLength": 128000,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "deepseek/deepseek-r1",
+          "contextLength": 163840,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "deepseek/deepseek-chat",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "meta-llama/llama-3.3-70b-instruct",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "meta-llama/llama-3.3-70b-instruct:free",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-4o-2024-11-20",
+          "contextLength": 128000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "qwen/qwen-2.5-coder-32b-instruct",
+          "contextLength": 128000,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen-2.5-7b-instruct",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "meta-llama/llama-3.2-11b-vision-instruct",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text",
+            "image"
+          ]
+        },
+        {
+          "id": "meta-llama/llama-3.2-1b-instruct",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "meta-llama/llama-3.2-3b-instruct",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "meta-llama/llama-3.2-3b-instruct:free",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "qwen/qwen-2.5-72b-instruct",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "nousresearch/hermes-3-llama-3.1-70b",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "nousresearch/hermes-3-llama-3.1-405b",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "nousresearch/hermes-3-llama-3.1-405b:free",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-4o-2024-08-06",
+          "contextLength": 128000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "meta-llama/llama-3.1-70b-instruct",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "meta-llama/llama-3.1-8b-instruct",
+          "contextLength": 131072,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-4o-mini",
+          "contextLength": 128000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "openai/gpt-4o-mini-2024-07-18",
+          "contextLength": 128000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "openai/gpt-4o",
+          "contextLength": 128000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "openai/gpt-4o-2024-05-13",
+          "contextLength": 128000,
+          "inputModalities": [
+            "text",
+            "image",
+            "file"
+          ]
+        },
+        {
+          "id": "openai/gpt-4-turbo",
+          "contextLength": 128000,
+          "inputModalities": [
+            "text",
+            "image"
+          ]
+        },
+        {
+          "id": "anthropic/claude-3-haiku",
+          "contextLength": 200000,
+          "inputModalities": [
+            "text",
+            "image"
+          ]
+        },
+        {
+          "id": "openai/gpt-3.5-turbo-0613",
+          "contextLength": 4095,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-4-turbo-preview",
+          "contextLength": 128000,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-3.5-turbo-instruct",
+          "contextLength": 4095,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-3.5-turbo-16k",
+          "contextLength": 16385,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-3.5-turbo",
+          "contextLength": 16385,
+          "inputModalities": [
+            "text"
+          ]
+        },
+        {
+          "id": "openai/gpt-4",
+          "contextLength": 8191,
+          "inputModalities": [
+            "text"
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "name": "Models List (Invalid Key / openai)",
+    "path": "/api/models",
+    "method": "POST",
+    "status": 200,
+    "ok": true,
+    "duration": 130,
+    "isJson": true,
+    "data": {
+      "models": []
+    }
+  },
+  {
+    "name": "Generate API Endpoint (Unauthorized/Invalid Key)",
+    "path": "/api/generate",
+    "method": "POST",
+    "status": 400,
+    "ok": false,
+    "duration": 48,
+    "isJson": true,
+    "data": {
+      "error": "google API key is required. Please set it in settings."
+    }
+  }
+]
