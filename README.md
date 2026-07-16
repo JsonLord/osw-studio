@@ -1,3 +1,26 @@
+---
+title: OSW Studio
+emoji: 🤖
+colorFrom: indigo
+colorTo: yellow
+sdk: docker
+app_port: 7860
+pinned: false
+license: mit
+hf_oauth: true
+hf_oauth_scopes:
+  - inference-api
+  - contribute-repos
+tags:
+  - ai
+  - web-development
+  - code-generation
+  - llm
+  - agent
+  - low-code
+short_description: Agentic Browser-based Website Builder
+---
+
 <div align="center">
   <img src="public/osw-studio-logo.svg" alt="OSW Studio Logo" width="128" height="128" />
 
