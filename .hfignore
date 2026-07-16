@@ -1,0 +1,24 @@
+# Hugging Face deployment ignore list
+node_modules/
+.next/
+out/
+build/
+.git/
+.github/
+data/
+sites/
+deployments/
+public/sites/
+public/deployments/
+*.log
+.env
+.env.*
+.vscode/
+.idea/
+.cache/
+project_dump.txt
+*.dump
+scripts/
+e2e/
+test-results/
+playwright.config.ts
