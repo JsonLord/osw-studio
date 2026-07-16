@@ -26,7 +26,8 @@ import {
   HardDrive,
   DollarSign,
   FileBox,
-  Server
+  Server,
+  Github
 } from 'lucide-react';
 import { ThumbnailArea } from '@/components/ui/thumbnail-area';
 import { captureProjectScreenshot } from '@/lib/utils/project-thumbnail';

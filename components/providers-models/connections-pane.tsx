@@ -22,7 +22,6 @@ import { HFAuthPanel } from '@/components/settings/hf-auth-panel';
 import { Drawer } from './drawer';
 import { SearchConnectionsSection } from './search-connections';
 import { GitHubConnectionsSection } from './github-connections';
-import { GitHubConnectionsSection } from './github-connections';
 import type { ProviderId } from '@/lib/llm/providers/types';
 import { disconnectCodex } from '@/lib/auth/codex-auth';
 import { cn, logger } from '@/lib/utils';
