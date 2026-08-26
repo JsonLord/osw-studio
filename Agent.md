@@ -12,7 +12,9 @@
 We use the **Docker SDK** for flexibility, utilizing a standard `Dockerfile` configured to run Next.js standalone on port `7860`.
 
 ### HF Token
-- The token is read from the environment variable (never hardcode it).
+- The environment variable **`HF_TOKEN` will always be provided at execution time**.
+- Never hardcode the token. Always read it from the environment.
+- All monitoring and log-streaming commands rely on `$HF_TOKEN`.
 
 ### Required Files
 - `Dockerfile` (binds the app to port `7860`)
@@ -30,7 +32,8 @@ The following endpoints must be accessible publicly without any redirection/auth
 - **`/health`**
   - **Method:** GET
   - **Purpose:** Health check returning HTTP 200 once Next.js server is ready. Necessary for Hugging Face to transition the Space status to *running*.
-  - **Response:**
+  - **Request Example:** None (GET request)
+  - **Response Example:**
     ```json
     {
       "ok": true,
@@ -43,26 +46,82 @@ The following endpoints must be accessible publicly without any redirection/auth
 
 - **`/api-docs`**
   - **Method:** GET
-  - **Purpose:** Serve documentation or routes specification of the available APIs.
-  - **Response:** JSON list of the endpoints.
+  - **Purpose:** Serve documentation of all available API endpoints. Reachable at `https://Leon4gr45-builder.hf.space/api-docs`
+  - **Request Example:** None (GET request)
+  - **Response Example:**
+    ```json
+    {
+      "name": "OSW Studio API Documentation",
+      "version": "1.84.0",
+      "description": "API endpoints documentation...",
+      "endpoints": [...]
+    }
+    ```
 
 ### Functional Endpoints
 
-All the available functional endpoints listed in `/health` under the endpoint groups (like `auth`, `public`, `analytics`, etc.) are supported.
+- **`/api/models`**
+  - **Method:** GET
+  - **Purpose:** List available AI models across supported providers.
+  - **Request Example:** GET `/api/models`
+  - **Response Example:** `{"models": [...]}`
+
+- **`/api/validate-key`**
+  - **Method:** POST
+  - **Purpose:** Validate provider API key.
+  - **Request Example:** `{"provider": "openrouter", "apiKey": "sk-..."}`
+  - **Response Example:** `{"valid": true}`
+
+- **`/api/generate`**
+  - **Method:** POST
+  - **Purpose:** Generate web code or site response via AI model.
+  - **Request Example:** `{"prompt": "Create landing page", "provider": "openrouter", "model": "..."}`
+  - **Response Example:** `{"result": "..."}`
+
+- **`/api/generate-image`**
+  - **Method:** POST
+  - **Purpose:** Generate image assets using AI image generation service.
+  - **Request Example:** `{"prompt": "Logo design"}`
+  - **Response Example:** `{"url": "..."}`
+
+- **`/api/web/search`**
+  - **Method:** POST
+  - **Purpose:** Perform web search for context retrieval.
+  - **Request Example:** `{"query": "Next.js 15 features"}`
+  - **Response Example:** `{"results": [...]}`
+
+- **`/api/web/fetch`**
+  - **Method:** POST
+  - **Purpose:** Fetch web content from external URL.
+  - **Request Example:** `{"url": "https://example.com"}`
+  - **Response Example:** `{"content": "..."}`
 
 ---
 
-## 3. Tricks & Troubleshooting
+## 3. Deployment Workflow & Troubleshooting
 
-- **Large Upload / Storage Limit (Max: 1 GB):**
-  - Since standard `hf upload` without exclusions attempts to scan/upload local `node_modules` and `.next` build files, it can hit the 1 GB storage limit or fail on string limit in JS wrapper.
-  - **Fix:** Always explicitly set up `.hfignore` or use `--exclude` to ignore large local directories such as `node_modules/*`, `.next/*`, `.git/*`.
-  - Deployment Command:
-    ```bash
-    hf upload Leon4gr45/builder . --repo-type=space --token=$HF_TOKEN --exclude="node_modules/*" --exclude=".next/*" --exclude=".git/*"
-    ```
+### Standard Deployment Command
+Check that space is empty or clean, then run:
 
-- **Middleware Matcher Exclusion:**
-  - Standard Next.js matcher should explicitly allow `/health` and `/api-docs` so Hugging Face load balancers can reach them without running into authentication loops/redirects.
+```bash
+hf upload Leon4gr45/builder . --repo-type=space --token=$HF_TOKEN
+```
 
-# Force rebuild comment 1
+### Log Monitoring
+Scan build and run logs using curl with Bearer token:
+
+```bash
+# Build logs
+curl -N -H "Authorization: Bearer $HF_TOKEN" "https://huggingface.co/api/spaces/Leon4gr45/builder/logs/build"
+
+# Run logs (once build succeeds)
+curl -N -H "Authorization: Bearer $HF_TOKEN" "https://huggingface.co/api/spaces/Leon4gr45/builder/logs/run"
+```
+
+Monitor for 300 seconds to verify deployment success. If any logs indicate failure, fix issues in codebase, redeploy, and monitor in a cycle.
+
+### Exclusions & Size Limits
+- Set up `.hfignore` to ignore large local directories such as `node_modules/*`, `.next/*`, `.git/*`.
+
+### Middleware Matcher Exclusion
+- Next.js matcher in `middleware.ts` must explicitly allow `/health` and `/api-docs` so Hugging Face load balancers can reach them without running into authentication loops or redirects.
