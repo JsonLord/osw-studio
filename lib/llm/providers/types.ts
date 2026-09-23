@@ -17,6 +17,7 @@ export type BuiltInProviderId =
   | 'minimax'
   | 'llamacpp'
   | 'meshllm'
+  | 'freebuff'
   | 'opencode-go'
   | 'github';
 
