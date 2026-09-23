@@ -65,6 +65,7 @@ function vendorLabel(provider: ProviderId, modelId: string): string {
     minimax: 'MiniMax',
     llamacpp: 'llama.cpp',
     meshllm: 'MeshLLM',
+    freebuff: 'freebuff',
   };
   if (map[provider]) return map[provider] as string;
   // Custom providers: use the configured name.
