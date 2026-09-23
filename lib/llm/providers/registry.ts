@@ -310,6 +310,17 @@ export const providers: Record<BuiltInProviderId, ProviderConfig> = {
     supportsStreaming: true,
     isLocal: true
   },
+  freebuff: {
+    id: 'freebuff',
+    name: 'freebuff',
+    description: 'Free coding LLM CLI — no API key or credit card required',
+    apiKeyRequired: false,
+    baseUrl: 'http://localhost:8080/v1',
+    supportsModelDiscovery: true,
+    supportsFunctions: true,
+    supportsStreaming: true,
+    isLocal: true
+  },
   lmstudio: {
     id: 'lmstudio',
     name: 'LM Studio',
@@ -479,6 +490,8 @@ export function getDefaultModel(provider: ProviderId): string {
       return 'llama3.2:latest';
     case 'lmstudio':
       return 'qwen/qwen3-4b-thinking-2507';
+    case 'freebuff':
+      return 'freebuff-coder';
     case 'llamacpp':
       return 'local-model';
     case 'sambanova':
